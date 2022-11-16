@@ -1,0 +1,60 @@
+<configuration>
+  <!-- %m输出的信息,%p日志级别,%t线程名,%d日期,%c类的全名,,,, -->
+  <!--  控制台-->
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d %p (%file:%line\)- %m%n</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+  </appender>
+
+  <property name="LOG_HOME" value="/log"/>
+  <appender name="common"
+            class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>${LOG_HOME}/common.log</File>
+    <encoder>
+      <pattern>
+        %d %p (%file:%line\)- %m%n
+      </pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+    <!-- 此处设置字符集 -->
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_HOME}/common.log.%d.%i</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 64 MB -->
+        <maxFileSize>64 MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+  </appender>
+  <appender name="sql"
+            class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>${LOG_HOME}/sql.log</File>
+    <encoder>
+      <pattern>
+        %d %p (%file:%line\)- %m%n
+      </pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+    <!-- 此处设置字符集 -->
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_HOME}/sql.log.%d.%i</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 64 MB -->
+        <maxFileSize>64 MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+  </appender>
+
+  <root level="INFO">
+    <appender-ref ref="STDOUT"/>
+    <appender-ref ref="common"/>
+  </root>
+
+  <logger name="com.mydemo.loveprovider.mapper" level="DEBUG" additivity="false">
+    <appender-ref ref="sql"/>
+    <appender-ref ref="STDOUT"/>
+    <appender-ref ref="common"/>
+  </logger>
+
+</configuration>

@@ -1,0 +1,35 @@
+server:
+  port: 1012
+
+steal-url: https://api.shadiao.pro/chp
+
+spring:
+  application:
+    name: dudu
+  datasource:
+    druid:
+      username: xxx
+      password: xxx
+      url: xx
+      validation-query: select 1
+  mail:
+    host: smtp.163.com
+    username: xxx
+    password: xx
+    port: 465
+    protocol: smtps
+    default-encoding: utf-8
+  task:
+    execution:
+      pool:
+        allow-core-thread-timeout: true
+        core-size: 10
+        keep-alive: 60s
+        max-size: 20
+        queue-capacity: 40
+      thread-name-prefix: 'Thread-'
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
