@@ -51,7 +51,7 @@
     <appender-ref ref="common"/>
   </root>
 
-  <logger name="com.mydemo.loveprovider.mapper" level="DEBUG" additivity="false">
+  <logger name="com.love.dudu.mapper" level="DEBUG" additivity="false">
     <appender-ref ref="sql"/>
     <appender-ref ref="STDOUT"/>
     <appender-ref ref="common"/>

@@ -18,13 +18,16 @@ public class WeatherServiceTask {
      * 发送邮件 定时任务
      */
     @Scheduled(cron = "0 15 7 * * ?")
-    public void getWeather() {
+    public void sendWeatherMail() {
+        log.info(">>>>> send weather mail start");
         weatherService.sendWeatherMail();
+        log.info("<<<<< send weather mail end");
     }
 
     @Scheduled(cron = "0 0/3 8 * * ?")
     public void stealSubject() {
-        String subject = weatherService.stealSubject();
-        log.info("----- stealSubject:{}", subject);
+        log.info(">>>>> steal subject start");
+        weatherService.stealSubject();
+        log.info("<<<<< steal subject end");
     }
 }
